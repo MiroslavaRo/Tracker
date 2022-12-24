@@ -18,5 +18,14 @@ namespace Tracker.Models
         [Column(TypeName = "varchar(10)")]
         public string Type { get; set; } = "Expense"; //default value
 
+        [NotMapped]
+        public string? TitleWithIcon
+        {
+            get
+            {
+                return this.Icon + " " + this.Title;
+            }
+        }
+
     }
 }
