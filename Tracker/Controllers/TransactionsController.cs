@@ -9,88 +9,81 @@ using Tracker.Models;
 
 namespace Tracker.Controllers
 {
-    public class CategoriesController : Controller
+    public class TransactionsController : Controller
     {
         private readonly TrackerDbContext _context;
 
-        public CategoriesController(TrackerDbContext context)
+        public TransactionsController(TrackerDbContext context)
         {
             _context = context;
         }
 
-        // GET: Categories
-        
+        // GET: Transactions
         public async Task<IActionResult> Index()
         {
-              return _context.Categories != null ? 
-                          View(await _context.Categories.ToListAsync()) :
-                          Problem("Entity set 'TrackerDbContext.Categories'  is null.");
-
+            var trackerDbContext = _context.Transactions.Include(t => t.Category);
+            return View(await trackerDbContext.ToListAsync());
         }
 
-        // GET: Categories/CreateOrEdit
+        // GET: Transactions/CreateOrEdit
         public IActionResult CreateOrEdit(int id = 0)
         {
             if (id == 0)
             {
                 //create new category
-                return View(new Category());
+                return View(new Transaction());
             }
             else
             {
                 //enter existing category
-                return View(_context.Categories.Find(id));
+                return View(_context.Transactions.Find(id));
             }
         }
 
-        // POST: Categories/CreateOrEdit
+        // POST: Transactions/CreateOrEdit
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> CreateOrEdit([Bind("CategoryId,Title,Icon,Type")] Category category)
+        public async Task<IActionResult> CreateOrEdit([Bind("TransactionId,Amount,Note,Date,CategoryId")] Transaction transaction)
         {
             if (ModelState.IsValid)
             {
-                if(category.CategoryId == 0)
+                if (transaction.TransactionId == 0)
                 {
-                    _context.Add(category);
+                    _context.Add(transaction);
                     await _context.SaveChangesAsync();
                     return RedirectToAction(nameof(Index));
                 }
                 else
                 {
-                    _context.Update(category);
+                    _context.Update(transaction);
                     await _context.SaveChangesAsync();
                     return RedirectToAction(nameof(Index));
                 }
-                
+
             }
-            return View(category);
+            return View(transaction);
         }
 
-        // POST: Categories/Delete/5
+
+        // POST: Transactions/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            if (_context.Categories == null)
+            if (_context.Transactions == null)
             {
-                return Problem("Entity set 'TrackerDbContext.Categories'  is null.");
+                return Problem("Entity set 'TrackerDbContext.Transactions'  is null.");
             }
-            var category = await _context.Categories.FindAsync(id);
-            if (category != null)
+            var transaction = await _context.Transactions.FindAsync(id);
+            if (transaction != null)
             {
-                _context.Categories.Remove(category);
+                _context.Transactions.Remove(transaction);
             }
             
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
-        }
-
-        private bool CategoryExists(int id)
-        {
-          return (_context.Categories?.Any(e => e.CategoryId == id)).GetValueOrDefault();
         }
     }
 }

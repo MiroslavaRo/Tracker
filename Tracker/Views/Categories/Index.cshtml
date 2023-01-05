@@ -1,10 +1,15 @@
 ﻿@model IEnumerable<Tracker.Models.Category>
 
+@{
+    ViewData["PageTitle"] = "Categories";
+    ViewData["PageActionText"] = "+ New Category";
+    ViewData["PageActionUrl"] = "/Categories/CreateOrEdit";
+}
 
-<a asp-action="CreateOrEdit" asp-route-id="0">Create</a>
 
 <div class="row">
     <div class="col-md-7 category">
+        
         <table class="table table-bordered dataTable" id="dataTable" width="100%" cellspacing="0" role="grid" aria-describedby="dataTable_info" ">
             <thead>
                 <tr>

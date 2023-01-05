@@ -19,8 +19,8 @@ html {
 
 body {
     margin-bottom: 60px;
-  /*  background-color: #191b1c !important;
-    color: #ffff !important;*/
+    background-color: #191b1c !important; /*#1b1d21*/
+    color: #ffff !important;
 }
 
 /*-----------Custom-----------*/
@@ -132,7 +132,7 @@ body {
 
 
 /*Shape*/
-.fa-shapes {
+.fa-shapes, .fa-money-bill-transfer {
     font-size: 6em;
 }
 
@@ -173,4 +173,13 @@ body {
 .btn-edit, .btn-edit:hover{
     text-decoration:none;
     color:#fff;
+}
+
+/*----------------*/
+input[type="search"] {
+    border: 0 !important;
+    border-radius: 6px !important;
+}
+select {
+    border-radius: 6px !important;
 }
