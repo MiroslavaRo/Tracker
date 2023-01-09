@@ -20,62 +20,87 @@
 
 </head>
 <body>
-    <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
-            <div class="container-fluid">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">Tracker</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                    <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </nav>
-    </header>
-    <div class="container mt-4">
-        <div class="row justify-content-center">
-            <main role="main" class="pb-3">
-                <div class="row">
-                    <div class="col-md-7">
-                        <div class="d-flex flex-column mb-5">
-                            <div class="d-flex mb-1q">
-                                <div class="flex-grow-1">
-                                    <h3 class="fw-bold">@ViewData["PageTitle"]</h3>
-                                </div>
-                                <div>
-                                    @if (@ViewData["PageActionText"] != null)
-                                    {
-                                        <a class="btn btn-success" style="text-decoration:none; color:white;" href="@ViewData["PageActionUrl"]">
-                                            @ViewData["PageActionText"]
-                                        </a>
-                                        
-                                    }
-                                    
-                                </div>
-                            </div>
-                            @*breadcrum*@
-                        </div>
+    <partial name="_sidebar"/>
+    
+
+    <div class="main_content">
+        <!--header>
+            <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+                <div class="container-fluid">
+                    <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">Tracker</a>
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                            aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
+                        <ul class="navbar-nav flex-grow-1">
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+                            </li>
+                        </ul>
                     </div>
                 </div>
-                @RenderBody()
-            </main>
+            </nav>
+        </header-->
+        <nav class="navbar sticky-top">
+            <div class="container-fluid py-2 px-4">
+                <i class="fa-solid fa-magnifying-glass"></i>
+                <div>
+                    <i class="fa-solid fa-bell"></i>
+                    <i class="fa-solid fa-message"></i>
+                    <img class="profile-picture" src="~/img/avatar.png" />
+                </div>
+            </div>
+
+        </nav>
+        <div class="container mt-5">
+            <div class="row justify-content-center">
+                <div class="@(ViewData["isDashboard"] == null?"col-md-10" : "col-md-12")">
+                    <main role="main" class="pb-3">
+                        @if (ViewData["isDashboard"] == null)//to hide breadcrum
+                        {
+                            <div class="row">
+                                <div class="col-md-7">
+                                    <div class="d-flex flex-column mb-5">
+                                        <div class="d-flex mb-1q">
+                                            <div class="flex-grow-1">
+                                                <h3 class="fw-bold">@ViewData["PageTitle"]</h3>
+                                            </div>
+                                            <div>
+                                                @if (@ViewData["PageActionText"] != null)
+                                                {
+                                                    <a class="btn btn-success" style="text-decoration:none; color:white;" href="@ViewData["PageActionUrl"]">
+                                                        @ViewData["PageActionText"]
+                                                    </a>
+
+                                                }
+
+                                            </div>
+                                        </div>
+                                        @*breadcrum*@
+                                    </div>
+                                </div>
+                            </div>
+                        }
+
+                        @RenderBody()
+                    </main>
+                </div>
+
+                
+            </div>
         </div>
     </div>
 
+    <!--
     <footer class="border-top footer text-muted">
         <div class="container">
             &copy; 2022 - Tracker - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
         </div>
-    </footer>
+    </footer>-->
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
@@ -97,7 +122,7 @@
     <!-- Page level custom scripts -->
     <!-- Charts -->
     <script src="~/js/demo/chart-area-demo.js"></script>
-    <script src="~/js/demo/chart-pie-demo.js"></script>    
+    <!--script src="~/js/demo/chart-pie-demo.js"></script>  -->
     <script src="~/js/demo/chart-bar-demo.js"></script>
     <!-- Tables -->
     <script src="~/js/demo/datatables-demo.js"></script>

@@ -34,7 +34,7 @@ namespace Tracker
 
             app.MapControllerRoute(
                 name: "default",
-                pattern: "{controller=Categories}/{action=Index}/{id?}");
+                pattern: "{controller=Dashboard}/{action=Index}/{id?}");
               //  pattern: "{controller=Home}/{action=Index}/{id?}");
 
             app.Run();

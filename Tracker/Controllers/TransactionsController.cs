@@ -28,41 +28,46 @@ namespace Tracker.Controllers
         // GET: Transactions/CreateOrEdit
         public IActionResult CreateOrEdit(int id = 0)
         {
+            var CategoryCollection = _context.Categories.ToList();
+            Category DefaultCategory = new Category() { CategoryId = 0, Title = "Choose a Category" };
+            CategoryCollection.Insert(0, DefaultCategory);
+            ViewData["CategoryId"] = new SelectList(CategoryCollection, "CategoryId", "TitleWithIcon");
+            
+            
             if (id == 0)
-            {
-                //create new category
+             {
+                //create new 
                 return View(new Transaction());
             }
-            else
-            {
-                //enter existing category
-                return View(_context.Transactions.Find(id));
-            }
+             else
+             {
+                 //enter existing 
+                 return View(_context.Transactions.Find(id));
+             }
         }
 
         // POST: Transactions/CreateOrEdit
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> CreateOrEdit([Bind("TransactionId,Amount,Note,Date,CategoryId")] Transaction transaction)
         {
+            
             if (ModelState.IsValid)
             {
                 if (transaction.TransactionId == 0)
                 {
                     _context.Add(transaction);
-                    await _context.SaveChangesAsync();
-                    return RedirectToAction(nameof(Index));
                 }
                 else
                 {
                     _context.Update(transaction);
-                    await _context.SaveChangesAsync();
-                    return RedirectToAction(nameof(Index));
                 }
 
+                await _context.SaveChangesAsync();
+                return RedirectToAction(nameof(Index));
+
             }
+            ViewData["CategoryId"] = new SelectList(_context.Categories, "CategoryId", "TitleWithIcon");
             return View(transaction);
         }
 
@@ -85,5 +90,10 @@ namespace Tracker.Controllers
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
+
+
+
+
+
     }
 }

@@ -6,45 +6,55 @@
     ViewData["PageActionUrl"] = "/Transactions/CreateOrEdit";
 }
 
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Amount)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Note)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Date)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Category)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Amount)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Note)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Date)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Category.CategoryId)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.TransactionId">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.TransactionId">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.TransactionId">Delete</a>
-            </td>
-        </tr>
-}
-    </tbody>
-</table>
+
+<div class="row">
+    <div class="col-md-7 category transaction">
+
+        <table class="table table-bordered dataTable" id="dataTable" width="100%" cellspacing="0" role="grid" aria-describedby="dataTable_info" ">
+            <thead>
+                <tr role="row">
+                    <th class="sorting sorting_asc" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Category: activate to sort column descending" style="width: 50%;" aria-sort="ascending">Category</th>
+                    <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Date: activate to sort column ascending" style="width: 30%;">Date</th>
+                    <th class="activity">Amount</th>
+                    <th class="activity">Activity</th>
+                </tr>
+
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.CategoryTitleWithIcon)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Date)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.FormatedAmount)
+                    </td>
+
+                    <td>
+                        <a class="btn-edit" href="/Transactions/CreateOrEdit/@item.TransactionId">
+                            <i class="fa-solid fa-pen"></i>
+                        </a>
+                        <form action="/Transactions/Delete/@item.TransactionId" method="post">
+                            @Html.AntiForgeryToken()
+                            <button type="submit" class="btn-edit" onclick="return confirm(&quot;Are you shure you want to delete this record?&quot;)">
+                                <i class="fa-solid fa-trash-can text-danger"></i>
+                            </button>
+
+                        </form>
+                    </td>
+                </tr>
+
+                }
+            </tbody>
+        </table>
+    </div>
+    <div class="col-md-5 side-widget">
+        <div class="widget-class side h-100 d-flex justify-content-center" style="background-color:#343548">
+            <i class="fa-solid  fa-money-bill-transfer"></i>
+        </div>
+    </div>
+</div>

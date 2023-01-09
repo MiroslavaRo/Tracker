@@ -1,0 +1,54 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    List<Object> menuItems = new List<Object>();
+
+    menuItems.Add(new
+    {
+        text = "Transactions",
+        url = "/Transactions"
+    });
+    menuItems.Add(new
+    {
+        text = "Categories",
+        url = "/Categories"
+    });
+}
+
+
+<div id="sidenav" class="sidenav" style="width: 290px;">
+    <div class="logo-wrapper">
+        <div class="app-logo"> 
+            <img src="~/img/wallet.png" style="width: 40px;" />
+        </div>
+        <div class="w-100 "></div>
+        <i id="sidebar-toggler" class="fa-solid fa-angles-left" ></i>
+    </div>
+    <div class="profile-wrapper">
+        <img class="profile-picture" src="~/img/avatar.png" />
+        <div class="titles d-flex flex-collumn ps-3"></div>
+        <h6 class="mb-0">Wallet App</h6>
+        <span class="text-muted">Ashton Cox2</span>
+    </div>
+
+    <span href="/">General</span>
+    <div>------------------</div>
+    <a href="/"><i class="fa-solid fa-box" style="margin-right: 15px"></i>Dashboard</a>
+    <a href="/Categories"><i class="fa-solid fa-folder-closed" style="margin-right: 15px"></i>Categories</a>
+    <a href="/Transactions"><i class="fa-solid fa-arrow-right-arrow-left" style="margin-right: 15px"></i>Transactions</a>
+    <span href="/">Extras</span>
+    <div>------------------</div>
+    <a href="#"><i class="fa-solid fa-chart-simple" style="margin-right: 15px"></i>Reports</a>
+    <a href="#"><i class="fa-solid fa-gear" style="margin-right: 15px"></i>Settings</a>
+</div>
+    
+<script>
+    document.addEventListener('DOMContentLoaded',function(){
+        var dockBar = document.getElementById("sidenav");
+        document.getElementById('sidebar-toggler').onclick = function(){
+            dockBar.classList.toggle("active");// toggle();
+        };
+
+    });
+</script>

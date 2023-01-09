@@ -24,9 +24,106 @@ body {
 }
 
 /*-----------Custom-----------*/
+/*Logo*/
+.logo-wrapper{
+    height:70px;
+    display:flex;
+    flex-direction:row;
+    align-items:center;
+}
+.app-logo{
+    padding:10px;
+}
 
 
-/* Please ❤ this if you like it! */
+/*Navbar*/
+nav.navbar {
+    background-color: #191b1c;/* rgb(49 60 80);
+    */
+}
+nav.navbar i{
+    padding:10px;
+    border-radius:50%;
+    font-size:1.2rem;
+    cursor: pointer;
+}
+nav.navbar i:hover, nav.navbar img:hover{
+    cursor:pointer;
+    background-color:#48545f14;
+    transform:scale(1.05) translateZ(0px);
+}
+
+img.profile-picture{
+    width:45px;
+    height:45px;
+    border-radius:50%;
+
+}
+
+
+/* The sidebar menu */
+.sidenav {
+    height: 100%;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    background-color: #20242b; /* #12161d;*/
+    border-right: 1px dashed rgba(75,82,85,0.24);
+    overflow-x: hidden;
+    /*padding-top: 20px;*/
+    padding: 10px 20px;
+}
+
+    /* The navigation menu links */
+    .sidenav a {
+        padding: 6px 8px 6px 16px;
+        text-decoration: none;
+        font-size: 25px;
+        color: #818181;
+        display: block;
+    }
+
+        /* When you mouse over the navigation links, change their color */
+        .sidenav a:hover {
+            color: #f1f1f1;
+        }
+
+/* Style page content */
+.main_content {
+    margin-left: 290px;
+}
+
+/* On smaller screens, where height is less than 450px, change the style of the sidebar (less padding and a smaller font size) */
+@media screen and (max-height: 450px) {
+    .sidenav {
+        padding-top: 15px;
+    }
+
+        .sidenav a {
+            font-size: 18px;
+        }
+}
+
+#sidebar-toggler{
+    padding:10px;
+    border-radius:50%;
+    font-size:1.2rem;
+    cursor:pointer;
+}
+    #sidebar-toggler:hover {
+        background-color: #48545f14;
+        cursor: pointer;
+        transform: scale(1.05) translateZ(0px);
+    }
+
+
+
+
+/*---------------*/
+main {
+    margin-bottom: 100px;
+}
 
 
 @import url('https://fonts.googleapis.com/css?family=Poppins:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i&subset=devanagari,latin-ext');
@@ -122,12 +219,54 @@ body {
     align-items: center;
 }
 
+.widget-class.summary > div:first-child {
+    background-color: #222b33;
+    padding: 1rem;
+    border-top-left-radius: 1rem;
+    border-bottom-left-radius: 1rem;
+}
+.widget-class.summary > div:first-child i {
+    font-weight: bold;
+}
+.widget-class.income > div:first-child {
+    color: #65da41;
+}
+.widget-class.expense > div:first-child {
+    color: #ff4e48;
+}
+.widget-class.balance > div:first-child {
+    color: #2aa1ff;
+}
+.widget-class.chart {
+    padding: 5px;
+}
 
-@media(max-width:768px){
+@media(min-width:768){
+    .transaction {
+        
+    }
+}
+
+
+@media(max-width:992px) {
     .side-widget {
         display: none;
     }
+}
+/*Doughnut cahrt*/
+#myPieChart {
+    display: block;
+    height: 253px;
+    width: 482px;
+}
 
+@media (min-width: 768px) {
+    .chart-pie-text {
+       /* margin-bottom: 15px;*/
+    }
+    .chart-pie {
+        margin-bottom: 25px;
+    }
 }
 
 
@@ -183,3 +322,4 @@ input[type="search"] {
 select {
     border-radius: 6px !important;
 }
+
