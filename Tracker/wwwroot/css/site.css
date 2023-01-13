@@ -62,36 +62,101 @@ img.profile-picture{
 
 
 /* The sidebar menu */
+#sidebar-toggler:before {
+    content: "\f100";
+    /*fa-angles-left*/
+}
+
 .sidenav {
+    width: 290px;
     height: 100%;
     position: fixed;
     z-index: 1;
     top: 0;
     left: 0;
-    background-color: #20242b; /* #12161d;*/
+    background-color: #20242b;
     border-right: 1px dashed rgba(75,82,85,0.24);
     overflow-x: hidden;
-    /*padding-top: 20px;*/
     padding: 10px 20px;
+    /*transition: 0.5s ease;*/
 }
 
-    /* The navigation menu links */
-    .sidenav a {
-        padding: 6px 8px 6px 16px;
-        text-decoration: none;
-        font-size: 25px;
-        color: #818181;
-        display: block;
+.top-section {
+    display: flex;
+    margin: 10px 0 20px 0;
+    padding: 10px;
+}
+    .top-section img {
+        align-self: center;
     }
 
-        /* When you mouse over the navigation links, change their color */
+
+.titles {
+    flex-direction: column;
+    margin: 0 0 0 20px;
+}
+    .titles h5{
+        margin:0;
+    }
+
+.border-t {
+    border-top: 1px solid #65da41 !important;
+    padding: 10px 0;
+}
+    .border-t i {
+        margin-right: 15px;
+    }
+
+
+
+/* The navigation menu links */
+.sidenav a {
+    line-height: 2.5rem;
+    padding: 6px 8px 6px 16px;
+    text-decoration: none;
+    font-size: 25px;
+    color: #c1c1c1;
+    display: block;
+}
         .sidenav a:hover {
             color: #f1f1f1;
         }
 
+
+.sidenav.closed {
+    width: 100px;
+}
+
+    .sidenav.closed .app-logo {
+        display: none;
+    }
+
+    .sidenav.closed .titles > *, .sidenav.closed .border-t a {
+        font-size: 0px;
+    }
+
+    .sidenav.closed .border-t i {
+        font-size: 25px;
+    }
+
+    .sidenav.closed.sidenav a {
+        line-height: 0.7rem;
+    }
+    .sidenav.closed #sidebar-toggler:before {
+        content: "\f101";
+        /*fa-angles-left*/
+    }
+
+    
+
+
+/*==========================================*/
 /* Style page content */
 .main_content {
     margin-left: 290px;
+}
+.sidenav.closed>.main_content {
+    margin-left: 100px;
 }
 
 /* On smaller screens, where height is less than 450px, change the style of the sidebar (less padding and a smaller font size) */
