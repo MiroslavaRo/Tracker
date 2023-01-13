@@ -35,6 +35,13 @@ body {
     padding:10px;
 }
 
+.row {
+    max-height: 500px;
+}
+.m-container.mt-5, .m-container.my-5 {
+    margin-top: 1rem !important;
+}
+
 
 /*Navbar*/
 nav.navbar {
@@ -74,17 +81,17 @@ img.profile-picture{
     z-index: 1;
     top: 0;
     left: 0;
-    background-color: #20242b;
     border-right: 1px dashed rgba(75,82,85,0.24);
     overflow-x: hidden;
     padding: 10px 20px;
-    /*transition: 0.5s ease;*/
+    transition: 0.5s width ease;
 }
 
 .top-section {
     display: flex;
     margin: 10px 0 20px 0;
     padding: 10px;
+    background: rgb(48 48 53 / 50%);
 }
     .top-section img {
         align-self: center;
@@ -95,8 +102,10 @@ img.profile-picture{
     flex-direction: column;
     margin: 0 0 0 20px;
 }
-    .titles h5{
-        margin:0;
+    .titles h4 {
+        margin: 0;
+        color: #65da41;
+        font-weight: bold;
     }
 
 .border-t {
@@ -147,7 +156,9 @@ img.profile-picture{
         /*fa-angles-left*/
     }
 
-    
+    .sidenav.closed .top-section {
+        background: none;
+    }   
 
 
 /*==========================================*/
@@ -378,6 +389,71 @@ main {
     text-decoration:none;
     color:#fff;
 }
+/*========================================*/
+/*---------TABLE-----*/
+
+.table {
+    width: 100%;
+    display: table;
+    margin: 0;
+}
+
+.table {
+    width: 100%;
+    max-width: 100%;
+    margin-bottom: 1rem;
+    background-color: transparent;
+}
+.table, .row_ {
+    width: 100% !important;
+}
+
+.row_ {
+    display: table-row;
+    background: #343548;
+}
+/*
+.row_ {
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+    margin-right: -15px;
+    margin-left: -15px;
+}*/
+.row_ .cell:nth-child(1) {
+    width: 260px;
+}
+.row_ .cell:nth-child(2) {
+    width: 360px;
+}
+    .row_ .cell:nth-child(3) {
+        width: 250px;
+        text-align: end;
+    }
+    .row_.header {
+        color: #fff;
+        background: #1b1b28;
+    }
+.row_.header .cell {
+    font-size: 18px;
+    color: #fff;
+    font-weight: unset !important;
+    padding-top: 19px;
+    padding-bottom: 19px;
+}
+
+    .row_ .cell {
+        font-size: 15px;
+        color: #fff;
+        line-height: 1.2;
+        font-weight: unset !important;
+        padding: 0.5rem;
+    }
+
+.cell {
+    display: table-cell;
+}
 
 /*----------------*/
 input[type="search"] {
@@ -388,3 +464,18 @@ select {
     border-radius: 6px !important;
 }
 
+/*=======================================*/
+#dataTable_paginate a{
+    padding: 0 5px;
+    text-decoration:none;
+    cursor:pointer;
+    color:inherit;
+}
+
+
+#myChart {
+    width: 470px;
+    height: 300px !important;
+    color: #fff !important;
+    margin: 30px 0 0 0;
+}

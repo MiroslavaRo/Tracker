@@ -47,69 +47,44 @@
     
 </div>
 
-@*Doughnut and Spline Chart*@
-<!--
-<div class="row mb-4">
-    <div class="col-md-4">
-        <div class="widget-class chart">
-            <div class="p-4">
-                <h5 class="fw-bold">Expense By Category</h5>
-            </div>
-            <div class="mt-4 text-center small chart-pie-text">
-                @foreach (var item in ViewBag.DoughnutCahrtData)
-                {
-                    <span class="mr-2">
-                        <i class="fas fa-circle text-primary">@item.categoryTitleWithIcon</i>
-                </span>
-                }
-                
-                                    
-            </div>
-            <div class="chart-pie pt-4">
-                
-                <canvas id="myPieChart" width="964" height="506" class="chartjs-render-monitor">
 
-                </canvas>
-            </div>
-        </div>
-    </div>
-</div>-->
 
-@*Recent Transaction*@
+
+
 <div class="row">
+    @*Recent Transaction*@
     <div class="col-md-6">
         <div class="widget-class">
             <div class="p-4">
                 <h5 class="fw-bold">Recent Transactions</h5>
             </div>
             <div class="px-4 pb-4">
-                <table class="table table-bordered dataTable" id="dataTable" width="100%" cellspacing="0" role="grid" aria-describedby="dataTable_info" ">
-                    <thead>
-                        <tr role="row">
-                            <th class="sorting sorting_asc" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Category: activate to sort column descending" style="width: 50%;" aria-sort="ascending">Category</th>
-                            <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Date: activate to sort column ascending" style="width: 30%;">Date</th>
-                            <th class="activity">Amount</th>
-                        </tr>
-
-                    </thead>
-                    <tbody>
-                        @foreach (var item in ViewBag.RecentTransactions)
-                        {
-                        <tr>
-                            <td>
+                <div class="table">
+                    <div class="row_ header">
+                        <div class="cell">
+                            Category
+                        </div>
+                        <div class="cell">
+                            Date
+                        </div>
+                        <div class="cell">
+                            Amount
+                        </div>
+                    </div>
+                    @foreach (var item in ViewBag.RecentTransactions){
+                    <div class="row_">
+                        <div class="cell" data-title="Full Name">
                                 @item.CategoryTitleWithIcon
-                            </td>
-                            <td>
-                                @item.Date
-                            </td>
-                            <td>
+                        </div>
+                        <div class="cell" data-title="Age">
+                                @item.Date.ToString("dd/MM/yyyy")
+                        </div>
+                        <div class="cell" data-title="Job Title">
                                 @item.FormatedAmount
-                            </td>
-                        </tr>
-
-                        }
-                    </tbody>
-                </table>
+                        </div>
+                    </div>
+                    }
+                </div>
 
             </div>
         </div>
@@ -122,58 +97,11 @@
             </div>
         </div>
     </div>
+
+    
 </div>
 
 
-<script>
-    // Set new default font family and font color to mimic Bootstrap's default styling
-
-    var tlt = [];
-    var num = [];
-    var colors = [];
-
-    function makeid(length) {
-    var result           = '';
-    var characters       = 'abcdefghijklmnopqrstuvwxyz0123456789';
-    var charactersLength = characters.length;
-    for ( var i = 0; i < length; i++ ) {
-        result += characters.charAt(Math.floor(Math.random() * charactersLength));
-    }
-    return result;
-    }
 
 
-    // Pie Chart Example
-    var ctx = document.getElementById("myPieChart");
-    var myPieChart = new Chart(ctx, {
-        type: 'doughnut',
-        data: {
-            labels: ["Light", "Dark"],
-            datasets: [{
-                data: [90,63],
-                backgroundColor: colors,
-                hoverBackgroundColor: ['rgb(255, 99, 132)','rgb(54, 162, 235)'],
-                hoverBorderColor: ['rgb(255, 99, 132)', 'rgb(54, 162, 235)'],
-            }],
-        },
-        options: {
-            maintainAspectRatio: false,
-            tooltips: {
-                backgroundColor: "rgb(255,255,255)",
-                bodyFontColor: "#858796",
-                borderColor: '#dddfeb',
-                borderWidth: 1,
-                xPadding: 15,
-                yPadding: 15,
-                displayColors: false,
-                caretPadding: 10,
-            },
-            legend: {
-                display: false
-            },
-            cutoutPercentage: 80,
-        },
-    });
 
-
-</script>
