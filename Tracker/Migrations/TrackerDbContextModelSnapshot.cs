@@ -17,7 +17,7 @@ namespace Tracker.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "7.0.1")
+                .HasAnnotation("ProductVersion", "7.0.2")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
@@ -74,6 +74,40 @@ namespace Tracker.Migrations
                     b.ToTable("Transactions");
                 });
 
+            modelBuilder.Entity("Tracker.Models.User", b =>
+                {
+                    b.Property<int>("UserId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("UserId"));
+
+                    b.Property<int>("CategoryId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Email")
+                        .IsRequired()
+                        .HasColumnType("varchar(50)");
+
+                    b.Property<string>("Password")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("TransactionId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("UserName")
+                        .HasColumnType("varchar(30)");
+
+                    b.HasKey("UserId");
+
+                    b.HasIndex("CategoryId");
+
+                    b.HasIndex("TransactionId");
+
+                    b.ToTable("Users");
+                });
+
             modelBuilder.Entity("Tracker.Models.Transaction", b =>
                 {
                     b.HasOne("Tracker.Models.Category", "Category")
@@ -83,6 +117,25 @@ namespace Tracker.Migrations
                         .IsRequired();
 
                     b.Navigation("Category");
+                });
+
+            modelBuilder.Entity("Tracker.Models.User", b =>
+                {
+                    b.HasOne("Tracker.Models.Category", "Category")
+                        .WithMany()
+                        .HasForeignKey("CategoryId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Tracker.Models.Transaction", "Transaction")
+                        .WithMany()
+                        .HasForeignKey("TransactionId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Category");
+
+                    b.Navigation("Transaction");
                 });
 #pragma warning restore 612, 618
         }
